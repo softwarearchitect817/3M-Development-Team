@@ -1,0 +1,164 @@
+Instruction for API use:
+Hello and nice to work with you :D hope we achive alot together in this project and future ones
+
+as my colleage statment before you will use his provided template and co-operate with him regarding structure of work and 
+and design ...etc
+
+my part will considre working with API so don't histiate to ask any question or report any error at any time 
+and sorry in case some delay happened before 
+
+so first API which already implemented login API which will contain some important infromation in responce like 
+
+JWT and Refresh Token 
+the JWT should send as bareer in each request to API with some static informtion which will be changed later and some paramter in API that will
+be dynamic base on Login API responce  like :loginDetailsUserID
+--paramter from  login loginDetailsEntityID represent the default entity for this user
+while List :
+loginDetailsEntities
+represent DDL for all entities this user can show thire application, create one for .. ETC
+
+in case the parameter 
+loginDetailsIsAdmin =1 
+then entity list should be all and it should be taken from other api 
+which is 
+
+SystemManegement/getSystemManegementDDLs
+
+this api will used to populate all DDL in system which should be cashed in some state manegment mechanisim and fetch from time to time
+to refresh them in case the are changed
+
+
+this api whill restore following  DDLs with label for show and value for code send in corresponding parameter to final API 
+while in each list there is other configuration that might be needed and the are explained below 
+
+Entities;
+--------------------------------------------------------------------------------
+Currencies;
+Prefix: Currency Prefix 
+ExchangeRateToUSD: currency exchange rate from this currency to usd
+--------------------------------------------------------------------------------
+Roles;
+--------------------------------------------------------------------------------
+
+RolesPermisions;
+valu: Role ID
+Prefix: page name for which role 
+show :previow page with above name
+insert :insert in page with above name
+update :update to page with above name
+delete :cancel from  page with above name
+print :print document from  page with above name
+--------------------------------------------------------------------------------
+PermisionGroups;
+
+--------------------------------------------------------------------------------
+Permisions;
+GroupID: to which group this page belong
+--------------------------------------------------------------------------------
+ApplicationStatus;
+
+--------------------------------------------------------------------------------
+ApplicationFees;
+ApplicationType: to which application this fee belong 
+Currency: currency for the fee
+Ammount: fee amount for this single fee
+--------------------------------------------------------------------------------
+ApplicationType;
+Prefix: application prefix
+--------------------------------------------------------------------------------	
+Positions;
+--------------------------------------------------------------------------------	
+ArchiveTypes;
+Counter: appplication type for which this archive belong
+Currency: requiered face image
+show: document type archive requiered or not
+--------------------------------------------------------------------------------
+Cities;
+Counter: contry
+Currency: provinance
+
+--------------------------------------------------------------------------------
+Provinance;
+Counter: country
+--------------------------------------------------------------------------------
+Countries;
+Prefix: Nationality
+--------------------------------------------------------------------------------
+Gender;
+--------------------------------------------------------------------------------
+MaritalStatus;
+--------------------------------------------------------------------------------
+
+
+after Mr . Musrafa provide you details 
+about what should done 
+following object should be formed from you GUI and send to following API
+
+Applications/applyNewIssuanceApplication
+
+the object like following 
+
+applicationType-> code from DDLs
+applicationCreationDate-> Client date with following format(YYYY-MM-DD HH24:MI:SS)
+applicationDateEntryID--> userID from Login
+applciationIssuierEntity--> chossed entity base on above
+Person: person data as obkect included in application object like following 
+	Integer personNationalIdentifier
+	String personNationalIDIssueDate, 
+	String 	personFirstName;
+	String 	personSecondName;
+	String  personMiddleName;
+	String  personLasName;
+	String  personMotherName;
+	String  personMotherFatherName;
+	List<String>  personPhoneNumber;
+	Integer personCityID;
+	String personAddress;
+	String personBloodGroup;
+	Integer personCountryOfBirth;
+	Integer personCityOfBirth;
+	String personDateOfBirth;
+	Integer personGender;
+	Integer personMartialStatus;
+	Integer personFoodRationCardNumber;
+	String personFoodRationCardIssueDate;
+	String personFoodRationCardIssueCenter;
+	Integer personResidenceCardNumber;
+	String personResidenceCardIssueDate;
+	Integer personResidenceCardIssueCity;
+	Integer personResidenceCardQuarter;
+	Integer personResidenceCardSector;
+	Integer personNationality;
+	Integer personNationalityName;
+	
+     
+	 Integer personCardIdNo
+     String personCardIDIsuueDate
+	 String personCardIDRecordNo
+	 String personCardIDBookNo
+	 String personCardIDIssuingAuthority
+	 
+	List<ArchiveDocument> personArchiveDocument --> person image object will be disribed later ;
+	
+List<ArchiveDocument> applicationArchiveDocument --> applciation scan document object inside application main object;
+
+applicationArchiveDocument object desc
+	
+	Integer archiveDocumentType;DDL
+	Integer archiveDocumentisFaceImage;
+	String archiveDocumentImageBase64; 
+	String archiveDocumentNo;
+	String archiveDocumentDate;
+	String archiveDocumentIssuingAuthority
+
+
+note these fields 
+	 
+Integer personCardIdNo
+String personCardIDIsuueDate
+String personCardIDRecordNo
+String personCardIDBookNo
+String personCardIDIssuingAuthority
+	or these are entered in GUI 
+Integer personNationalIdentifier
+String personNationalIDIssueDate,
